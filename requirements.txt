@@ -1,4 +1,4 @@
 fastapi==0.110.2
 uvicorn[standard]==0.29.0
-pydantic==2.7.1
+pydantic[email]==2.7.1
 flask-cors==4.0.1

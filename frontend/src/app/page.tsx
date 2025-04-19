@@ -15,22 +15,25 @@ export default function Home() {
 
   // 2) Envio do e‑mail
   const handleSubmit = async () => {
-    setStatus("idle");
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/subscribe`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
       const data = await response.json();
       console.log("Status da resposta:", response.status);
       console.log("API Response:", data);
 
-      if (response.ok) setStatus("success");
-      else setStatus("error");
+      if (response.ok) {
+        setStatus("success");
+        window.location.href = "/obrigado";
+      } else {
+        setStatus("error");
+      }
     } catch (err) {
       console.error("Erro na requisição:", err);
       setStatus("error");

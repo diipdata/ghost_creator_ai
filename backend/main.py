@@ -29,6 +29,7 @@ async def root():
 
 @app.get("/api/emails")
 async def list_emails():
+    print("🔍 Rota /api/emails acessada")
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     c.execute("SELECT id, email FROM emails")

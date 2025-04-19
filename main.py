@@ -6,9 +6,13 @@ import sqlite3
 app = FastAPI()
 
 # CORS para permitir frontend se comunicar com o backend
+origins = [
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],     # ✅ vírgula corrigida aqui
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

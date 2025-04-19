@@ -24,6 +24,15 @@ app.add_middleware(
 async def root():
     return {"status": "ok"}
 
+@app.get("/api/emails")
+async def list_emails():
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    c.execute("SELECT id, email FROM emails")
+    emails = [{"id": row[0], "email": row[1]} for row in c.fetchall()]
+    conn.close()
+    return emails
+
 # Banco SQLite
 DATABASE = "emails.db"
 def init_db():

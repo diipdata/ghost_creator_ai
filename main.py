@@ -6,6 +6,7 @@ import sqlite3
 app = FastAPI()
 
 # CORS para permitir frontend se comunicar com o backend
+o
 origins = [
     "http://localhost:3000",
 ]
@@ -17,6 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ROTA RAIZ PARA "ACORDAR" A APP
+@app.get("/")
+async def root():
+    return {"status": "ok"}
 
 # Banco SQLite
 DATABASE = "emails.db"
@@ -34,11 +40,6 @@ def init_db():
     conn.close()
 
 init_db()
-
-# GET básico que “acorda” o app antes do POST
-@app.get("/")
-async def root():
-    return {"status": "ok"}
 
 # Modelo para validação de entrada
 class EmailInput(BaseModel):
@@ -59,7 +60,7 @@ async def subscribe(data: EmailInput):
     finally:
         conn.close()
 
-# Novo bloco para tratar o preflight CORS
+# Resposta manual para preflight CORS
 @app.options("/api/subscribe")
 async def options_handler():
     response = Response()

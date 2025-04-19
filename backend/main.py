@@ -6,7 +6,11 @@ import sqlite3
 app = FastAPI()
 
 # CORS para permitir frontend se comunicar com o backend
-origins = ["http://localhost:3000"]
+origins = [
+    "http://localhost:3000",
+    "https://ghost-creator-ai.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

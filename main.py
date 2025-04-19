@@ -35,6 +35,11 @@ def init_db():
 
 init_db()
 
+# GET básico que “acorda” o app antes do POST
+@app.get("/")
+async def root():
+    return {"status": "ok"}
+
 # Modelo para validação de entrada
 class EmailInput(BaseModel):
     email: EmailStr

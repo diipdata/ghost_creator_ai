@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 import sqlite3
@@ -53,6 +53,15 @@ async def subscribe(data: EmailInput):
         return {"message": "E-mail já cadastrado"}
     finally:
         conn.close()
+
+# Novo bloco para tratar o preflight CORS
+@app.options("/api/subscribe")
+async def options_handler():
+    response = Response()
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
 
 if __name__ == "__main__":
     import uvicorn

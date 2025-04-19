@@ -5,6 +5,9 @@ import sqlite3
 
 app = FastAPI()
 
+# Banco SQLite (mover para o topo)
+DATABASE = "emails.db"
+
 # CORS para permitir frontend se comunicar com o backend
 origins = [
     "http://localhost:3000",
@@ -19,7 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ROTA RAIZ PARA "ACORDAR" A APP
+# ROTA RAIZ
 @app.get("/")
 async def root():
     return {"status": "ok"}
@@ -33,8 +36,6 @@ async def list_emails():
     conn.close()
     return emails
 
-# Banco SQLite
-DATABASE = "emails.db"
 def init_db():
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -46,13 +47,13 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
 init_db()
 
 # Modelo para validação de entrada
 class EmailInput(BaseModel):
     email: EmailStr
 
-# Endpoint de inscrição
 @app.post("/api/subscribe")
 async def subscribe(data: EmailInput):
     conn = sqlite3.connect(DATABASE)
@@ -66,7 +67,6 @@ async def subscribe(data: EmailInput):
     finally:
         conn.close()
 
-# Resposta manual para preflight CORS
 @app.options("/api/subscribe")
 async def options_handler():
     resp = Response()

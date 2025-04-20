@@ -62,6 +62,30 @@ export default function Home() {
       {status === "error" && (
         <p className="text-red-400 text-sm text-center">Erro ao cadastrar. Tente novamente.</p>
       )}
+
+      {/* Boxes de explicação sobre a plataforma */}
+      <div className="mt-10 grid gap-4 md:grid-cols-3 w-full max-w-5xl">
+        <div className="bg-gray-800 rounded-xl p-5 text-center shadow-md">
+          <h2 className="text-lg font-semibold mb-2">Criação Automatizada</h2>
+          <p className="text-sm text-gray-300">
+            Gere roteiros, cortes, thumbnails e legendas com inteligência artificial e 1 clique.
+          </p>
+        </div>
+
+        <div className="bg-gray-800 rounded-xl p-5 text-center shadow-md">
+          <h2 className="text-lg font-semibold mb-2">Sem Mostrar o Rosto</h2>
+          <p className="text-sm text-gray-300">
+            Crie conteúdo de alto impacto sem precisar aparecer. A IA faz o show.
+          </p>
+        </div>
+
+        <div className="bg-gray-800 rounded-xl p-5 text-center shadow-md">
+          <h2 className="text-lg font-semibold mb-2">Escalável e Inteligente</h2>
+          <p className="text-sm text-gray-300">
+            Produza como uma equipe profissional. Nossa IA aprende com o seu estilo.
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

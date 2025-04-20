@@ -20,7 +20,8 @@ export default function Home() {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      await response.json(); // Apenas garante que a resposta seja lida
+
       if (response.ok) {
         setStatus("success");
         window.location.href = "/obrigado";

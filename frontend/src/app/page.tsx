@@ -14,7 +14,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/subscribe`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

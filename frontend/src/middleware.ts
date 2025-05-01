@@ -1,7 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export default clerkMiddleware({
-  publicRoutes: ["/", "/obrigado", "/sign-in"], // adicione aqui todas as rotas públicas
+  ignoredRoutes: ["/", "/obrigado", "/sign-in"], // adicione aqui todas as rotas públicas
 });
 
 export const config = {

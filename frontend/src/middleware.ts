@@ -1,4 +1,4 @@
-import { authMiddleware } from "@clerk/nextjs/server";
+import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
   ignoredRoutes: ["/", "/obrigado", "/sign-in"], // adicione aqui todas as rotas públicas
